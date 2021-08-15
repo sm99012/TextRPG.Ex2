@@ -1,4 +1,5 @@
 #include <iostream>
+#include <Windows.h>
 #include <cstdlib>
 #include <ctime>
 #include <queue>
@@ -22,10 +23,11 @@ void Player::EntityStatus()
 	cout << "[플레이어 스테이터스 창]--------------------------------------------------" << endl;
 	cout << "[이름: " << GetName() << "]" << endl;
 	cout << "[LV: " << GetLV() << " [" << nCurrentEXP << "/" << nMAXEXP << "]]" << endl;
-	cout << "[C_HP/M_HP: " << GetC_HP() << "/" << GetM_HP() << ", C_MP/M_MP: " << GetC_MP() << "/" << GetM_MP() << ", 공격력: " << GetMinDamage() << " ~ " << GetMaxDamage() << ", 크리티컬: " << nAdditional_CRITICAL << " %, 방어력: " << GetDefensivePower() << "]" << endl;
+	cout << "[C_HP/M_HP: " << GetC_HP() << "/" << GetM_HP() << ", C_MP/M_MP: " << GetC_MP() << "/" << GetM_MP() << ", 총 데미지: " << GetMinDamage() << " ~ " << GetMaxDamage() << ", 크리티컬: " << nAdditional_CRITICAL << " %, 방어력: " << GetDefensivePower() << "]" << endl;
 	cout << endl;
-	cout << "[사용한 스탯포인트: [공격력: " << nAdditional_STR << ", 크리티컬: " << nAdditional_CRITICAL << ", 방어력: " << nAdditional_DEF << "]]" << endl;
+	cout << "[사용한 스탯포인트: [공격력: " << nSTR << ", 크리티컬: " << nCRITICAL << ", 방어력: " << nDEF << "]]" << endl;
 	cout << "[사용한 스탯포인트: " << nUsedStatusPoint << " / 사용하지 않은 스탯포인트: " << nCanUseStatusPoint << "]" << endl;
+	cout << "[추가적인 스탯 포인트: [공격력: " << nAdditional_STR << ", 크리티컬: " << nAdditional_CRITICAL << ", 방어력: " << nAdditional_DEF << "]]" << endl;
 	if (EquipmentSlot_Weapon != NULL)
 	{
 		EquipmentSlot_Weapon->ItemStatus();
@@ -69,15 +71,15 @@ void Player::PlayerStatusChangeSystem()
 	{
 		if (nCanUseStatusPoint > 0)
 		{
-			//nAdditionalStatus_STR++;
+			nSTR++;
 			nCanUseStatusPoint--;
 			nUsedStatusPoint++;
-			//AddStatus(1, 0, 0);
+			ChangeEntityStatus_Damage(1, 1);
 		}
 		else
 		{
 			cout << "사용할 수 있는 스탯포인트가 없습니다." << endl;
-			//Sleep(2000);
+			Sleep(1000);
 		}
 		break;
 	}
@@ -85,14 +87,14 @@ void Player::PlayerStatusChangeSystem()
 	{
 		if (nCanUseStatusPoint > 0)
 		{
-			//nAdditionalStatus_CRITICAL++;
+			nCRITICAL++;
 			nCanUseStatusPoint--;
 			nUsedStatusPoint++;
 		}
 		else
 		{
 			cout << "사용할 수 있는 스탯포인트가 없습니다." << endl;
-			//Sleep(1000);
+			Sleep(1000);
 		}
 		break;
 	}
@@ -100,26 +102,26 @@ void Player::PlayerStatusChangeSystem()
 	{
 		if (nCanUseStatusPoint > 0)
 		{
-			//nAdditionalStatus_DEF++;
+			nDEF++;
 			nCanUseStatusPoint--;
 			nUsedStatusPoint++;
-			//AddStatus(0, 1, 0);
+			ChangeEntityStatus_DefensivePower(1);
 		}
 		else
 		{
 			cout << "사용할 수 있는 스탯포인트가 없습니다." << endl;
-			//Sleep(1000);
+			Sleep(1000);
 		}
 		break;
 	}
 	default: return;
 	}
-	//PlayerStatusSystem();
+	EntityStatus();
 }
 // 플레이어 착용 무기 내구도 시스템
-void Player::Set_Equip_Weapon_DurabilitySystem(int durability)
+void Player::Set_Equip_Weapon_DurabilitySystem(int use)
 {
-
+	EquipmentSlot_Weapon->ChangeItemDurability(use);
 }
 // 플레이어 무기 착용에 따른 스탯 변경
 void Player::SetEquipment_Weapon(Item* weapon) 

@@ -19,8 +19,10 @@ public:
 	Item_Equip (string itemname, E_EquipCode equipcode, int itemcode, int lvlimit, E_ItemGrade itemgrade, int min_ap, int max_ap, int dp, int attackspeed, int durability);
 	// 아이템정보
 	void ItemStatus();
+	// 아이템 내구도 수치 변경
+	void ChangeItemDurability(int use);
 
-	//Get(), Set()
+	// Get(), Set()
 	int GetEquipCode() { return nEquipCode; }
 	void SetEquipCode(E_EquipCode equipcode) { this->nEquipCode = equipcode; }
 	int GetMin_AP() { return nMIN_AP; }

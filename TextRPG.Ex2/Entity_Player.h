@@ -15,12 +15,13 @@ class Player : public Entity
 
 	int nCanUseStatusPoint = 0;
 	int nUsedStatusPoint = 0;
-	int nSTR = 0;
-	int nCRITICAL = 0;
-	int nDEF = 0;
-	int nAdditional_STR = 0;
-	int nAdditional_CRITICAL = 0;
-	int nAdditional_DEF = 0;
+	int nSTR = 0; // 스탯 배분으로 올라가는 스탯포인트
+	int nCRITICAL = 0; // 스탯 배분으로 올라가는 스탯포인트
+	int nDEF = 0; // 스탯 배분으로 올라가는 스탯포인트
+	int nAdditional_MAXSTR = 0; // 아이템, 스킬 로 올라가는 추가 스탯포인트
+	int nAdditional_MINSTR = 0; // 아이템, 스킬 로 올라가는 추가 스탯포인트
+	int nAdditional_CRITICAL = 0; // 아이템, 스킬 로 올라가는 추가 스탯포인트
+	int nAdditional_DEF = 0; // 아이템, 스킬 로 올라가는 추가 스탯포인트
 
 	Map* nCurrentMap = NULL;
 
@@ -40,7 +41,7 @@ public:
 	// 플레이어 스탯분배
 	void PlayerStatusChangeSystem();
 	// 플레이어 착용 무기 내구도 시스템
-	void Set_Equip_Weapon_DurabilitySystem(int durability);
+	void Set_Equip_Weapon_DurabilitySystem(int use);
 	// 플레이어 무기 착용에 따른 스탯 변경
 	void SetEquipment_Weapon(Item* weapon);
 

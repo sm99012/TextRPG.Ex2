@@ -14,10 +14,10 @@ class Entity
 	int nM_MP;
 	int nC_MP;
 
-	int nMaxDamage;
-	int nMinDamage;
-	int nDefensivePower;
-	int nSpeed;
+	int nMaxDamage; // 총 합 데미지
+	int nMinDamage; // 총 합 데미지
+	int nDefensivePower; // 총 합 방어력
+	int nSpeed; // 총 합 이동속도
 
 public:
 	// 생성자
@@ -36,8 +36,6 @@ public:
 	void ChangeEntityStatus_DefensivePower(int dp);
 	// 개체 nSpeed 상태변경
 	void ChangeEntityStatus_Speed(int speed);
-
-
 
 	//Get(), Set()
 	string GetName() { return nEntityName; }

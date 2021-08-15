@@ -29,5 +29,5 @@ public:
 	int GetItemGrade() { return nItemGrade; }
 	void SetItemGrade(E_ItemGrade grade) { this->nItemGrade = grade; }
 	string GetItemDescription() { return nItemDescription; }
-	void SetItemDescription(string description); //아이템 설명
+	void SetItemDescription(string description) { this->nItemDescription = description; } //아이템 설명
 };

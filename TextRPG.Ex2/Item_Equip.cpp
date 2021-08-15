@@ -18,7 +18,8 @@ Item_Equip::Item_Equip(string itemname, E_EquipCode equipcode, int itemcode, int
 // 아이템정보
 void Item_Equip::ItemStatus()
 {
-	cout << "장비아이템[무기]: [" << GetItemName() << "]" << endl;
+	cout << "장비아이템_무기: [" << GetItemName() << "]" << endl;
+	cout << "--------------------------------------------------------------------------" << endl;
 	if (GetItemGrade() == 노멀)
 	{
 		cout << "[LV: " << GetItemLVLimit() << "][등급: 노멀]" << endl;
@@ -55,5 +56,12 @@ void Item_Equip::ItemStatus()
 	{
 		cout << "[공격력: " << nMIN_AP << " ~ " << nMAX_AP << "][방어력: " << nDP << "][공격속도: 매우빠름][내구도 : " << nC_Durability << "/" << nM_Durability << "]" << endl;
 	}
-	cout << "[" << GetItemDescription() << "]" << endl;
+	cout << "--------------------------------------------------------------------------" << endl;
+	cout << GetItemDescription() << endl;
+}
+// 아이템 내구도 감소
+void Item_Equip::ChangeItemDurability(int use)
+{
+	if (nC_Durability + use >= 0) this->nC_Durability + use;
+	else this->nC_Durability = 0;
 }
