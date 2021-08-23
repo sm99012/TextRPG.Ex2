@@ -26,8 +26,11 @@ void Entity::EntityStatus()
 // 개체 LV 변경
 void Entity::ChangeEntityStatus_LV(int lv)
 {
-	if (nLV += lv > 0) this->nLV += lv;
-	else this->nLV = 1;
+	if (nLV + lv > 0) this->nLV += lv;
+	this->nM_HP += 1;
+	this->nC_HP = nM_HP;
+	this->nM_MP += 1;
+	this->nC_MP = nM_MP;
 }
 // 개체 nM_HP, nM_MP 상태변경
 void Entity::ChangeEntityStatus_MHPMMP(int mhp, int mmp)

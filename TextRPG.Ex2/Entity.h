@@ -3,7 +3,7 @@
 
 using namespace std;
 
-class Entity
+class Entity // 모든 생명체
 {
 	string nEntityName;
 	int nEntityCode;
@@ -26,15 +26,15 @@ public:
 	virtual void EntityStatus();
 	// 개체 LV 변경
 	void ChangeEntityStatus_LV(int lv);
-	// 개체 nM_HP, nM_MP 상태변경
+	// 개체 nM_HP, nM_MP 상태변경, add
 	void ChangeEntityStatus_MHPMMP(int mhp = 0, int mmp = 0);
-	// 개체 nC_HP, nC_MP 상태변경
+	// 개체 nC_HP, nC_MP 상태변경, add
 	void ChangeEntityStatus_CHPCMP(int chp = 0, int cmp = 0);
-	// 개체 nMaxDamage, nMinDamage 상태변경
+	// 개체 nMaxDamage, nMinDamage 상태변경, add
 	void ChangeEntityStatus_Damage(int maxd, int mind);
-	// 개체 nDefensivePower 상태변경
+	// 개체 nDefensivePower 상태변경, add
 	void ChangeEntityStatus_DefensivePower(int dp);
-	// 개체 nSpeed 상태변경
+	// 개체 nSpeed 상태변경, add
 	void ChangeEntityStatus_Speed(int speed);
 
 	//Get(), Set()
@@ -58,4 +58,6 @@ public:
 	void SetMinDamage(int damage) { this->nMinDamage = damage; }
 	int GetDefensivePower() { return nDefensivePower; }
 	void SetDefensivePower(int defensivepower) { this->nDefensivePower = defensivepower; }
+	int GetSpeed() { return nSpeed; }
+	void SetSpeed(int speed) { this->nSpeed = speed; }
 };

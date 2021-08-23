@@ -5,3 +5,8 @@ Skill::Skill()
 {
 
 }
+
+void f()
+{
+
+}
